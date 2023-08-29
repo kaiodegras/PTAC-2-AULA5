@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 export default function ToDo() {
     const [atividade, setAtividade] = useState("");
     const [Lista, setLista] = useState([]);
-    
 
     const [id, setId] = useState(1)
 
@@ -29,16 +28,10 @@ export default function ToDo() {
                   <button>ADD</button>
             </form>
 
-<<<<<<< HEAD
             {Lista.map((ativ)=>
                <div key={ativ.atividade}>
-=======
-            {Lista.map((ativ)=> 
-               <div key={ativ.id}>
-                <p>{ativ.id}</p>
->>>>>>> 3f1c84f3634653ee3cce4652ea0b73fb3847ab85
                 <p>{ativ.atividade}</p>
-               </div> 
+               </div>
             )}
            
         </div>
