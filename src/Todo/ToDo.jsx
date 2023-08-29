@@ -2,18 +2,19 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function ToDo() {
-    const [Atividade, setAtividade] = useState("");
+    const [atividade, setAtividade] = useState("");
     const [Lista, setLista] = useState([]);
+    
 
     const [id, setId] = useState(1)
 
     const salvar = (e) =>{
-        e.proventDefault();
+        e.preventDefault();
         setLista([...Lista,{
             atividade: atividade, id:id
         }])
 
-        setId(1 + 1)
+        setId(id + 1)
         console.log(Lista)
     }
    
@@ -24,14 +25,15 @@ export default function ToDo() {
 
             <form onSubmit={salvar}>
                 <input type="text"
-                  onRateChange={(e) =>{setAtividade(e.target.value)}}/>
+                  onChange={(e) =>{setAtividade(e.target.value)}}/>
                   <button>ADD</button>
             </form>
 
-            {Lista.map((ativ)=>
-               <div>
+            {Lista.map((ativ)=> 
+               <div key={ativ.id}>
+                <p>{ativ.id}</p>
                 <p>{ativ.atividade}</p>
-               </div>
+               </div> 
             )}
            
         </div>
