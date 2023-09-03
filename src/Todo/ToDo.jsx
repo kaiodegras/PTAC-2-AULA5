@@ -1,39 +1,49 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import "./style.css";
 
 export default function ToDo() {
     const [atividade, setAtividade] = useState("");
-    const [Lista, setLista] = useState([]);
+    const [lista, setLista] = useState([]);
+    const [id, setId] = useState(1);
 
-    const [id, setId] = useState(1)
-
-    const salvar = (e) =>{
+    const salvar = (e) => {
         e.preventDefault();
-        setLista([...Lista,{
-            atividade: atividade, id:id
-        }])
-
-        setId(id + 1)
-        console.log(Lista)
+        setLista([...lista, {
+            atividade: atividade,
+            id: id
+        }]);
+        setId(id + 1);
+        setAtividade("");
+    };
+    const remover = (id) => {
+        /*setLista(lista.filter((ativ) => (ativ.id !== id ? lista : null)));*/
+        const auxLista = [];
+        lista.map((lista) => {
+            if (lista.id !== id) {
+                auxLista.push(lista);
+            }
+        });
+        setLista(auxLista);
     }
-   
     return (
-        <div>
+        <div class="container">
             <Link to="/">home</Link>
             <h1>Lista de Atividades</h1>
-
-            <form onSubmit={salvar}>
+            <form class="input" onSubmit={salvar}>
                 <input type="text"
-                  onChange={(e) =>{setAtividade(e.target.value)}}/>
-                  <button>ADD</button>
+                    value={atividade}
+                    onChange={(e) => { setAtividade(e.target.value) }} />
+                <button>ADICIONAR</button>
             </form>
-
-            {Lista.map((ativ)=>
-               <div key={ativ.atividade}>
-                <p>{ativ.atividade}</p>
-               </div>
+            {lista.map((ativ) =>
+                <ul key={ativ.id}>
+                    <li>
+                        <p>{ativ.atividade}</p>
+                        <button onClick={() => remover(ativ.id)}>Remover</button>
+                    </li>
+                </ul>
             )}
-           
         </div>
     );
 }
