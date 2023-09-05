@@ -7,13 +7,15 @@ export default function ToDo() {
     const [lista, setLista] = useState([]);
     const [id, setId] = useState(1);
     const [Faixa, setFaixa] = useState("")
+    const [Categoria, setCategoria] = useState("")
 
     const salvar = (e) => {
         e.preventDefault();
         setLista([...lista, {
             atividade: atividade,
             id: id,
-            Faixa: Faixa
+            Faixa: Faixa,
+            Categoria: Categoria
             
         }]);
         setId(id + 1);
@@ -41,6 +43,9 @@ export default function ToDo() {
                     <input type="text"
                     value={Faixa}
                     onChange={(e) => { setFaixa(e.target.value) }} />
+                    <input type="text"
+                    value={Categoria}
+                    onChange={(e) => { setCategoria(e.target.value) }} />
                 <button>ADICIONAR</button>
             </form>
             {lista.map((ativ) =>
@@ -48,6 +53,7 @@ export default function ToDo() {
                     <li>
                         <p>{ativ.atividade}</p>
                         <p>{ativ.Faixa}</p>
+                        <p>{ativ.Categoria}</p>
                         <button onClick={() => remover(ativ.id)}>Remover</button>
                     </li>
                 </ul>
