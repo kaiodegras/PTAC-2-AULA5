@@ -6,12 +6,15 @@ export default function ToDo() {
     const [atividade, setAtividade] = useState("");
     const [lista, setLista] = useState([]);
     const [id, setId] = useState(1);
+    const [Faixa, setFaixa] = useState("")
 
     const salvar = (e) => {
         e.preventDefault();
         setLista([...lista, {
             atividade: atividade,
-            id: id
+            id: id,
+            Faixa: Faixa
+            
         }]);
         setId(id + 1);
         setAtividade("");
@@ -28,18 +31,23 @@ export default function ToDo() {
     }
     return (
         <div class="container">
+            <img src="ibjjf.png"></img>
             <Link to="/">home</Link>
-            <h1>Lista de Atividades</h1>
+            <h1>Lutador de Jiu-Jiutsu</h1>
             <form class="input" onSubmit={salvar}>
                 <input type="text"
                     value={atividade}
                     onChange={(e) => { setAtividade(e.target.value) }} />
+                    <input type="text"
+                    value={Faixa}
+                    onChange={(e) => { setFaixa(e.target.value) }} />
                 <button>ADICIONAR</button>
             </form>
             {lista.map((ativ) =>
                 <ul key={ativ.id}>
                     <li>
                         <p>{ativ.atividade}</p>
+                        <p>{ativ.Faixa}</p>
                         <button onClick={() => remover(ativ.id)}>Remover</button>
                     </li>
                 </ul>
