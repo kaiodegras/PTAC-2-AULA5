@@ -6,8 +6,8 @@ export default function ToDo() {
     const [atividade, setAtividade] = useState("");
     const [lista, setLista] = useState([]);
     const [id, setId] = useState(1);
-    const [Faixa, setFaixa] = useState("")
-    const [Categoria, setCategoria] = useState("")
+    const [Faixa, setFaixa] = useState("");
+    const [Categoria, setCategoria] = useState("");
 
     const salvar = (e) => {
         e.preventDefault();
