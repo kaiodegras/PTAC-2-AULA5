@@ -1,12 +1,14 @@
 body {
     font-family: sans-serif;
-    background-color: blue;
+    background: linear-gradient(to right, red, orange);
+
+
   }
   
   .container {
     max-width: 500px;
     margin: 0 auto;
-    background-color: yellow;
+    background: linear-gradient(to bottom right, #ff0000, orange);
     padding: 20px;
     border-radius: 25px;
   }
