@@ -20,6 +20,8 @@ export default function ToDo() {
         }]);
         setId(id + 1);
         setAtividade("");
+        setFaixa("");
+        setCategoria("");
     };
     const remover = (id) => {
         /*setLista(lista.filter((ativ) => (ativ.id !== id ? lista : null)));*/
@@ -34,8 +36,10 @@ export default function ToDo() {
     return (
         <div class="container">
             <img src="ibjjf.png"></img>
-            <Link to="/">home</Link>
-            <h1>Lutador de Jiu-Jiutsu</h1>
+            <h1>Lutador de Jiu - Jiutsu</h1>
+            <Link to="/">
+                <button>Voltar Home</button>
+            </Link>
             <form class="input" onSubmit={salvar}>
                 <input type="text"
                     value={atividade}
