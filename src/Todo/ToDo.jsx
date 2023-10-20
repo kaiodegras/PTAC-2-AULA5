@@ -1,13 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
 
 export default function ToDo() {
+    const listaLocalStorage = localStorage.getItem("Lista");
     const [atividade, setAtividade] = useState("");
-    const [lista, setLista] = useState([]);
+    const [lista, setLista] = useState(JSON.parse(listaLocalStorage)|| []);
     const [id, setId] = useState(1);
     const [Faixa, setFaixa] = useState("");
     const [Categoria, setCategoria] = useState("");
+
+    useEffect(() => {
+        localStorage.setItem("Lista", JSON.stringify(lista));
+    }, [lista]);
 
     const salvar = (e) => {
         e.preventDefault();
@@ -16,40 +21,29 @@ export default function ToDo() {
             id: id,
             Faixa: Faixa,
             Categoria: Categoria
-            
         }]);
         setId(id + 1);
         setAtividade("");
         setFaixa("");
         setCategoria("");
     };
+
     const remover = (id) => {
-        /*setLista(lista.filter((ativ) => (ativ.id !== id ? lista : null)));*/
-        const auxLista = [];
-        lista.map((lista) => {
-            if (lista.id !== id) {
-                auxLista.push(lista);
-            }
-        });
-        setLista(auxLista);
-    }
+        const filteredList = lista.filter(item => item.id !== id);
+        setLista(filteredList);
+    };
+
     return (
-        <div class="container">
-            <img src="ibjjf.png"></img>
+        <div className="container">
+            <img src="ibjjf.png" alt="IBJJF"></img>
             <h1>Lutador de Jiu - Jiutsu</h1>
             <Link to="/">
                 <button>Voltar Home</button>
             </Link>
-            <form class="input" onSubmit={salvar}>
-                <input type="text"
-                    value={atividade}
-                    onChange={(e) => { setAtividade(e.target.value) }} />
-                    <input type="text"
-                    value={Faixa}
-                    onChange={(e) => { setFaixa(e.target.value) }} />
-                    <input type="text"
-                    value={Categoria}
-                    onChange={(e) => { setCategoria(e.target.value) }} />
+            <form className="input" onSubmit={salvar}>
+                <input type="text" value={atividade} onChange={(e) => setAtividade(e.target.value)} />
+                <input type="text" value={Faixa} onChange={(e) => setFaixa(e.target.value)} />
+                <input type="text" value={Categoria} onChange={(e) => setCategoria(e.target.value)} />
                 <button>ADICIONAR</button>
             </form>
             {lista.map((ativ) =>
