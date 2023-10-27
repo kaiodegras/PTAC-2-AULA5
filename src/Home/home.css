@@ -1,11 +1,10 @@
-h1{
-    color: black;
-}
-
-h2{
-    color: black;
+.home{
+    text-align: center;
 }
 
 button{
-    float: left;
+    display:flex ;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
 }

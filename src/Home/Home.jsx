@@ -4,12 +4,12 @@ import  "./home.css"
 export default function Home() {
    
     return (
-        <div>
+        <div class="home">
             <h1>Faça seu Cadastro:</h1>
             <br></br>
             <h2>E-mail do usuário:</h2>
             <br></br>
-            <input  type="text" class="centered-input"></input>
+            ,<input type="text" />
             <br></br>
             <br></br>
             <h2>Senha do usuário:</h2>
