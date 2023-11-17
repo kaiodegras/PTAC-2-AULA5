@@ -48,6 +48,10 @@ export default function ToDo() {
             </form>
             {lista.map((ativ) =>
                 <ul key={ativ.id}>
+                     <Link to={`/detalhe/${ativ.id}`}>
+                     </Link>
+                     <li>{ativ.atividade}</li>
+                     
                     <li>
                         <p>{ativ.atividade}</p>
                         <p>{ativ.Faixa}</p>
